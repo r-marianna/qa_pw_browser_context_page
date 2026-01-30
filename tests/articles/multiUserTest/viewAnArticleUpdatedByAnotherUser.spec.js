@@ -30,8 +30,9 @@ test('User can view an article updated by another user', async ({
   await viewArticlePage2.assertArticleTextIsVisible(articleWithoutTags.text);
   await viewArticlePage2.assertArticleAuthorNameIsVisible(user1.username);
 
-  await viewArticlePage.open(articleWithoutTags.url)
-  await viewArticlePage.clickOnEditBtn();
+  const viewArticlePage1 = new ViewArticlePage(page1);
+  await viewArticlePage1.open(articleWithoutTags.url);
+  await viewArticlePage1.clickOnEditBtn();
   await updateArticle(page1, articleWithOneTag);
 
   await viewArticlePage2.open(articleWithoutTags.url);
