@@ -28,6 +28,7 @@ test('User can sign in with changed in profile password',
     await editProfile.open();
     await editProfile.fillNewPasswordField(newPassword);
     await editProfile.clickUpdateSettingsBtn();
+    await editProfile.clickLogoutBtn();
 
     const signInPage1 = new SignInPage(page1);
     await signInPage1.open();
@@ -35,6 +36,7 @@ test('User can sign in with changed in profile password',
     await signInPage1.fillPasswordField(newPassword);
     await signInPage1.clickSignInButton();
 
-    await homePage.open();
-    await homePage.assertYourFeedTabIsVisible();
+    const homePage1 = new HomePage(page1);
+    await homePage1.open();
+    await homePage1.assertYourFeedTabIsVisible();
   });

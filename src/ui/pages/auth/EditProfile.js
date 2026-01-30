@@ -7,10 +7,11 @@ export class EditProfile {
     this.updateSettingsBtn = page.getByRole('button',
       { name: 'Update Settings' }
     );
+    this.logout = page.getByRole('button', { name: /Or click here to logout/ })
   }
 
   async open() {
-    await test.step(`Open 'Sign In' page`, async () => {
+    await test.step(`Open 'Settings' page`, async () => {
       await this.page.goto('/settings');
     });
   }
@@ -26,4 +27,11 @@ export class EditProfile {
       await this.updateSettingsBtn.click();
     });
   }
+
+  async clickLogoutBtn() {
+    await test.step(`Click on the Logout btn`, async () => {
+      await this.logout.click();
+    });
+  }
+
 }

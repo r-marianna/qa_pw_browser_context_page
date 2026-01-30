@@ -6,19 +6,19 @@ export class ViewArticlePage {
     this.articleTitleHeader = page.getByRole('heading');
     this.favoriteBtn = page.getByRole('button',
       {
-        name: 'Favorite Article'
+        name: /Favorite Article'/
       }).first();
     this.unfavoriteBtn = page.getByRole('button',
       {
-        name: 'Unfavorite Article'
+        name: /Unfavorite Article/
       }).first();
     this.followBtn = page.getByRole('button',
       {
-        name: 'Follow'
+        name: /Follow/
       }).first();
     this.unfollowBtn = page.getByRole('button',
       {
-        name: 'Unfollow'
+        name: /Unfollow/
       }).first();
     this.editBtn = page.getByRole('link', { name: 'Edit Article' }).first();
   }
@@ -45,7 +45,7 @@ export class ViewArticlePage {
 
   async clickOnUnfavoriteBtn() {
     await test.step(`Click on the Unfavorite button`, async () => {
-      await this.favoriteBtn.click();
+      await this.unfavoriteBtn.click();
     });
   }
 

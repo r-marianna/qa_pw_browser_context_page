@@ -28,10 +28,10 @@ test('User can unfollow the article created by another user', async ({
 
   await viewArticlePage.assertArticleTitleIsVisible(articleWithoutTags.title);
   await viewArticlePage.assertArticleTextIsVisible(articleWithoutTags.text);
-  await viewArticlePage.assertArticleAuthorNameIsVisible(user2.username);
-  await viewArticlePage.clickOnFavoriteBtn();
-  await viewArticlePage.assertUnfavoriteBtnIsVisible();
-  await viewArticlePage.clickOnUnfavoriteBtn();
-  await viewArticlePage.assertFavoriteBtnIsVisible()
+  await viewArticlePage.assertArticleAuthorNameIsVisible(user1.username);
+  await viewArticlePage.clickOnFollowBtn();
+  await viewArticlePage.assertUnfollowBtnIsVisible();
+  await viewArticlePage.clickOnUnfollowBtn();
+  await viewArticlePage.assertFollowBtnIsVisible()
   await homePage.assertUsernameIsVisible(user2.username);
 });

@@ -1,5 +1,6 @@
 import { test } from '../../_fixtures/fixtures';
 import { createArticle } from '../../../src/ui/actions/articles/createArticle';
+import { updateArticle } from '../../../src/ui/actions/articles/updateArticle';
 import { signUpUser } from '../../../src/ui/actions/auth/signUpUser';
 import { HomePage } from '../../../src/ui/pages/HomePage';
 import { ViewArticlePage } from '../../../src/ui/pages/article/ViewArticlePage';
@@ -29,10 +30,11 @@ test('User can view an article updated by another user', async ({
   await viewArticlePage2.assertArticleTextIsVisible(articleWithoutTags.text);
   await viewArticlePage2.assertArticleAuthorNameIsVisible(user1.username);
 
+  await viewArticlePage.open(articleWithoutTags.url)
   await viewArticlePage.clickOnEditBtn();
-  await createArticle(page1, articleWithOneTag);
+  await updateArticle(page1, articleWithOneTag);
 
-  await viewArticlePage2.open(page1.url());
+  await viewArticlePage2.open(articleWithoutTags.url);
   await viewArticlePage2.assertArticleTitleIsVisible(articleWithOneTag.title);
   await viewArticlePage2.assertArticleTextIsVisible(articleWithOneTag.text);
   await homePage.assertUsernameIsVisible(user2.username);

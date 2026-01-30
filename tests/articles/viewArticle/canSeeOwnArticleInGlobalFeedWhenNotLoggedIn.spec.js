@@ -13,15 +13,17 @@ test.beforeEach(async (
 });
 
 test('User can see own article in "Global feed" when not logged in',
-  async ({ user, page2, signInPage, homePage }) => {
-    await signInPage.open();
-    await signInPage.fillEmailField(user.email);
-    await signInPage.fillPasswordField(user.password);
-    await signInPage.clickSignInButton();
-
-    await homePage.assertYourFeedTabIsVisible();
-
+  async ({
+    user1,
+    page2,
+    articleWithoutTags,
+    articleWithOneTag
+  }) => {
     const homePage2 = new HomePage(page2);
     await homePage2.open();
+    await homePage2.clickGlobalFeedTabLink();
+    await homePage2.assertArticleInFeedTabIsVisible(articleWithoutTags.title)
+    await homePage2.assertArticleInFeedTabIsVisible(articleWithOneTag.title)
+    await homePage2.assertArticleAuthorNameIsVisible(user1.username);
     await homePage2.assertGlobalFeedTabIsVisible();
   });

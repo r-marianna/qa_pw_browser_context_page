@@ -7,9 +7,7 @@ export class HomePage {
     this.yourFeedTab = page.getByText('Your Feed');
     this.globalFeedTab = page.getByText('Global Feed');
     this.newArticleLink = page.getByRole('link', { name: 'New Article' });
-    this.articleTitle = page.getByRole('link', {
-      name: 'Article title'
-    });
+    this.articleTitle = page.getByRole('heading', { level: 1 });
   }
 
   authorLinkInArticleHeader(username) {
